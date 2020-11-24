@@ -1,2 +1,10 @@
-# Comprehensive_Database
-The creation of a metagenome and metatranscriptome reference alignment database containing all sequenced species and 
+# When I first started working on the microbiome, I assumed I'd just extract, sequence, and align all the RNA reads (metatranscriptome) to a big database that would tell me - here are all the organisms, what active genes they have, and what those genes do. Easy!
+***
+Ha Ha Ha. Nope. Instead I found all the databases functions, genes, taxonomy, proteins, all in separate websites. The taxonomy and lineages, not in a heirarchy but all tangled due to lazy scientists with their crap/lazy naming. The genes partially/un-annotated and with no way to just download them all as a file, so I could align all my reads to them. The existing alignment software not designed for the 30-70% multimapping - massive gene orthology in microbes, causing up to 95% FDR/FNR. Ugh. NOTHING was right. I spent the better part of my postdoc:
+  1. creating a cleaned, computer-readable, thoroughly standardized taxonomy-phylogeny database, with organism IDs from all gene sources: https://github.com/TealFurnholm/Universal-Taxonomy-Database
+  2. Compiling all JGI (hideously, painful, purgatory to download from TAPE, TAPE!! as in wind it with a pencil, 1980s technology), and NCBI database genes and proteins.
+  3. Compiling all the functional databases: COG, Pfam, InterPro, GO, MetaCyc... etc. and using UniRef protein clusters to maximally distribute all the functions to all the genes/proteins.
+  4. Since I deal with short (100nt) reads, I needed to know how conserved all the genes are - to get their lowes common ancestors (LCAs), and to find all the likely contaminants. So I split all the genes into 100nt pieces and aligned all these pseudo-reads to every gene in the database. ... oh yeah, there wasn't a software to do this, so we had to create a new microbiome-specific alignment software (Muscato): https://github.com/kshedden/muscato
+
+So this GitHub repository covers the creation of this "Universal" (as it has all available host/microbe organisms = use for any purpose) Gene Reference Database.
+If you want it, you'll have to contact me to figure out a download, this sucker is BIG (~1TB).
